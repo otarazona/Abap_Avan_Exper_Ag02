@@ -1,0 +1,15 @@
+INTERFACE zif_lab_02_customer_ag02
+  PUBLIC .
+
+   TYPES:
+    BEGIN OF TY_CUST_ADDRESS,
+      FIRST_NAME TYPE STRING,
+      LAST_NAME  TYPE STRING,
+    END OF TY_CUST_ADDRESS.
+
+ METHODS: GET_CUSTOMER IMPORTING iv_CUSTOMER_ID type string
+                       RETURNING VALUE(rv_adress) TYPE ty_cust_address.
+
+
+
+ENDINTERFACE.

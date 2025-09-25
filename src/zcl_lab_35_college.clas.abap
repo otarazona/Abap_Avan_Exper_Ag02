@@ -1,0 +1,23 @@
+CLASS zcl_lab_35_college DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    METHODS enroll_student IMPORTING ir_enroll TYPE REF TO zcl_lab_34_student_ag2.
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_lab_35_college IMPLEMENTATION.
+  METHOD enroll_student.
+
+
+
+  ENDMETHOD.
+
+ENDCLASS.
