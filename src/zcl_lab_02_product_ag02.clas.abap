@@ -6,7 +6,7 @@ CLASS zcl_lab_02_product_ag02 DEFINITION
   PUBLIC SECTION.
 
     METHODS: set_product      IMPORTING iv_product TYPE matnr,
-             set_creationdate IMPORTING ccreation_date TYPE zdate.
+             set_creationdate IMPORTING ccreation_date TYPE ZDATE.
 
   PROTECTED SECTION.
   PRIVATE SECTION.

@@ -227,7 +227,221 @@ CLASS zcl_execution_ag02 IMPLEMENTATION.
     lo_method_name = 'GET_HEADQUARTERS'.
     CALL METHOD lo_object->(lo_method_name) RECEIVING rv_headquart = lv_headquarters.
 
-    out->write( lv_headquarters ).
+*   out->write( lv_headquarters ).
+
+**Estructura de control TRY-CATCH-ENDTRY
+*
+*    DATA(lo_user) = NEW zcl_lab_53_check_user_ag2(  ).
+*    DATA: lv_result TYPE I.
+*    DATA: lv_num1 TYPE I VALUE 10.
+*    DATA: lv_num2 TYPE I.
+*
+*    TRY.
+**        lo_user->check_user( sy-uname ).
+*
+*       lv_result = lv_num1 / lv_num2.
+*
+*      CATCH zcx_lab_52_operations_ag2 into DATA(lx_auth).
+*       out->write( lx_auth->get_text(  ) ).
+*
+*      CATCH cx_sy_zerodivide into DATA(lx_zerodivide).
+*       out->write( lx_zerodivide->get_text(  ) ).
+*
+**Estructura de control RETRY.
+*       lv_num2 = 2.
+*
+*       RETRY.
+*
+** GRANULARIDAD
+*
+*CATCH cx_root into data(lx_root).
+*      out->write( 'Root' ).
+*
+*
+*
+*
+*    ENDTRY.
+*
+*
+*
+*out->write( |'FINISH': { lv_result }| ).
+
+
+**** Estructura de control CLEANUP
+
+*Estructura de control TRY-CATCH-ENDTRY
+
+    DATA(lo_user) = NEW zcl_lab_53_check_user_ag2(  ).
+    DATA: lv_result TYPE i.
+    DATA: lv_num1 TYPE i VALUE 10.
+    DATA: lv_num2 TYPE i.
+
+    TRY.
+        TRY.
+
+            lv_result = lv_num1 + lv_num2.
+            lv_result = lv_num1 / lv_num2.
+            lv_result = lv_num1 - lv_num2.
+
+          CATCH zcx_lab_52_operations_ag2 INTO DATA(lx_auth).
+            out->write( lx_auth->get_text(  ) ).
+
+          CATCH cx_a4c_bc_exception.
+
+          CLEANUP INTO DATA(lv_cleanup).
+
+*            out->write( |Cleanup uno....{ lv_result }| ).
+
+
+
+        ENDTRY.
+
+      CATCH cx_sy_zerodivide INTO DATA(lx_zerodivide).
+*        out->write( lx_zerodivide->get_text(  ) ).
+*Estructura de control RETRY.
+        lv_num2 = 2.
+        RETRY.
+*out->write( |Cleanup dos.....| ).
+
+    ENDTRY.
+
+*out->write( |'FINISH': { lv_result }| ).
+
+
+**Implementación de excepciones reanudables
+
+    DATA(lo_bank) = NEW zcl_lab_54_bank_ag2( ).
+
+    TRY.
+        lo_bank->transfer( iv_iban = 'ES95 4329 8765 4321' ).
+
+      CATCH BEFORE UNWIND zcx_lab_55_auth_iban_ag2 INTO DATA(lx_aut_IBAN).
+*        out->write( lx_aut_IBAN->get_text(  ) ).
+
+        RESUME.
+    ENDTRY.
+
+
+** ASIGNACIÓN DE EXCEPCIONES UNAS A OTRAS
+*
+*    DATA(lo_analyzer) = NEW zcl_lab_58_date_analyzer_ag2(  ).
+*
+*    TRY.
+*        TRY.
+*            lo_analyzer->analyze_date(  ).
+*          CATCH zcx_lab_56_no_date_ag2 INTO DATA(lx_no_date).
+*            lo_analyzer->analyze_format( io_previus = lx_no_date ).
+*            out->write( lx_no_date->get_text(  ) ).
+*        ENDTRY.
+*      CATCH zcx_lab_57_format_unknown_ag2 INTO DATA(lx_form_unk).
+*        out->write( |{ lx_form_unk->get_text(  ) }{ cl_abap_char_utilities=>newline }| ).
+*        out->write( |{ lx_form_unk->previous->get_text(  ) }\n | ).
+*        out->write( lx_form_unk->get_text(  ) ).
+*
+*    ENDTRY.
+
+** CLASE GLOBAL TEST
+
+*DATA(lo_suma) = NEW zcl_lab_59_calculator_ag2( ).
+*
+*lo_suma->sum_up( exporting iv_num1 = 6 iv_num2 = 10
+*                 RECEIVING rv_result = DATA(lv_resultado) ).
+*
+*
+*out->write( lv_resultado ).
+
+**PATRONES DE DISEÑO
+
+*DATA: go_singleton1 TYPE REF TO zcl_lab_62_context_patr_ag2,
+*      go_singleton2 TYPE REF TO zcl_lab_62_context_patr_ag2.
+*
+*go_singleton1 = zcl_lab_62_context_patr_ag2=>get_intance(  ).
+*
+*wait up to 3 seconds.
+*go_singleton2 = zcl_lab_62_context_patr_ag2=>get_intance(  ).
+*
+*
+*out->write( go_singleton1->mv_time ).
+*out->write( go_singleton1->mv_time ).
+
+
+**FACTORY METHODS
+
+    DATA: go_file    TYPE REF TO zif_lab_06_file_ag2,
+          go_factory TYPE REF TO zcl_lab_65_factory_ag2.
+
+    go_factory = NEW #(  ).
+    go_file = go_factory->create_file( 'File_Supply' ).
+*    out->write( go_file->get_file_type(  ) ).
+
+
+** Template Method
+
+    DATA(lo_Pack_A) = NEW zcl_lab_67_package_a_ag2(  ).
+    DATA(lo_Pack_B) = NEW zcl_lab_68_package_b_ag2(  ).
+
+*    out->write( |--- EJECUTANDO PAQUETE A (Playa) ---| ).
+*    lo_pack_a->travel( out ).
+*
+*    out->write( | | ).
+*    out->write( |--- EJECUTANDO PAQUETE B (Eje Cafetero) ---| ).
+*    lo_pack_b->travel( out ).
+
+** Patrón OBSERVER
+
+    DATA(go_blog) = NEW zcl_lab_69_blog_ag02(  ).
+    DATA(go_admin) = NEW zcl_lab_71_administrator_ag2(  ).
+    DATA(go_users) = NEW zcl_lab_72_users_ag2(  ).
+
+    SET HANDLER go_admin->on_public_art FOR go_blog.
+    SET HANDLER go_users->on_public_art FOR go_blog.
+
+    go_blog->set_artic( 'New article publication' ).
+
+*    out->write( go_blog->get_artic(  ) ).
+*    out->write( | | ).
+*    out->write( go_admin->new_public ).
+*    out->write( go_users->new_public ).
+
+
+** Patrón Model - View - Controller
+
+    DATA(go_model) = NEW zcl_lab_73_model_ag2(  ).
+    DATA(go_view) = NEW zcl_lab_74_view_ag2(  ).
+
+    DATA(go_controller) = NEW zcl_lab_75_controller_ag2(  ).
+
+    go_controller->set_model( go_model ).
+    go_controller->get_model(  )->set_carrier_fli( 'LH' ).
+    go_controller->set_view( go_view ).
+
+    go_controller->get_view(  )->disp_flights( it_flights = go_controller->get_model(  )->get_carrier_fli(  )
+                                               io_out     = out ).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

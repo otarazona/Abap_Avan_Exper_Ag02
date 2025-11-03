@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZMC_MESSAJE_AG2</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STEXT>Clase mensaje Agr02</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMC_MESSAJE_AG2</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>The user &amp;1 is not allowed to execute this business process.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMC_MESSAJE_AG2</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>The user &amp;1 is not allowed to access the invoked resource.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMC_MESSAJE_AG2</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Fecha de tarjeta vigente; Activa.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMC_MESSAJE_AG2</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>No existen datos.</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZMC_MESSAJE_AG2</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Formato desconocido.</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

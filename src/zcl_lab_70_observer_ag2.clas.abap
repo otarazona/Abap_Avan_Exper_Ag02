@@ -1,0 +1,20 @@
+CLASS zcl_lab_70_observer_ag2 DEFINITION ABSTRACT
+  PUBLIC
+*  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    METHODS on_public_art ABSTRACT
+      FOR EVENT new_public OF zcl_lab_69_blog_ag02
+      IMPORTING ev_new_public.
+
+
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_lab_70_observer_ag2 IMPLEMENTATION.
+ENDCLASS.
