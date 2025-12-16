@@ -1,0 +1,8 @@
+@EndUserText.label: 'AC User AGR02'
+@MappingRole: true
+define role ZAC_USER_AGR2 {
+    grant select on zcds_com_inv_2__AG2
+          where CreatedBy = $session.user;
+                        
+                        
+}

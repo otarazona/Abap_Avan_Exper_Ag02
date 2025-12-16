@@ -1,0 +1,6 @@
+@EndUserText.label: 'AC custom_aspect AGR02'
+@MappingRole: true
+define role ZAC_CUSTOM_ASPECT_AG2 {
+    grant select on zcds_auditing_aspect_AG2
+                    where (InvAmount, CustomerName) = aspect ZACP_AUDITING_ASPECT_AG2;
+}
