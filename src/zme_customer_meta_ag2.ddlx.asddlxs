@@ -1,0 +1,23 @@
+@Metadata.layer: #CORE
+annotate entity zcds_customer_meta_AG2 with
+
+parameters
+
+@EndUserText.label: 'CITY'
+pCity
+
+
+{
+  @UI.dataFieldDefault: [{ importance: #MEDIUM }]
+  @UI.lineItem: [{ position: 10,
+                   type: #FOR_ACTION }]
+  CustomerId;
+
+  @UI.dataFieldDefault: [{ importance: #MEDIUM }]
+  @UI.lineItem: [{ position: 20,
+                   type: #FOR_ACTION, dataAction: 'get_customer'  }]
+  City;
+  
+  
+
+}
